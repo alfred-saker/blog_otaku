@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+/* body 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+} */
+section 
+{
+  position: absolute;
+  width: 100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  /* overflow: hidden; */
+}
+
+@keyframes animate 
+{
+  0%
+  {
+    transform: translateY(-100%);
+  }
+  100%
+  {
+    transform: translateY(100%);
+  }
+}
+section span 
+{
+  color: white;
+}
+
+
+section .signin
+{
+  position: absolute;
+  max-width: 100%;
+  background: #222;  
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0,0,0,9);
+}
+section .signin .content 
+{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+section .signin .content h2 
+{
+  font-size: 2em;
+  color: #0f0;
+}
+section .signin .content .text-mdp 
+{
+  width:auto;
+  font-size: 20px;
+  color: white;
+  /* text-transform: uppercase; */
+}
+section .signin .content .form 
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+section .signin .content .form .inputBox
+{
+  /* position: relative; */
+  width: 50vw;
+}
+section .signin .content .form .inputBox input 
+{
+  position: relative;
+  width: 100%;
+  background: #333;
+  border: none;
+  outline: none;
+  padding: 25px 10px 7.5px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+}
+section .signin .content .form .inputBox i 
+{
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: #aaa;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.signin .content .form .inputBox input:focus ~ i,
+.signin .content .form .inputBox input:valid ~ i
+{
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: #fff;
+}
+.signin .content .form .links 
+{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.signin .content .form .links a 
+{
+  color: #fff;
+  text-decoration: none;
+}
+.signin .content .form .links a:nth-child(2)
+{
+  color: #0f0;
+  font-weight: 600;
+}
+.signin .content .form .inputBox input[type="submit"]
+{
+  padding: 10px;
+  background: #0f0;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+input[type="submit"]:active
+{
+  opacity: 0.6;
+}
+@media (max-width: 900px)
+{
+  section span 
+  {
+    width: calc(10vw - 2px);
+    height: calc(10vw - 2px);
+  }
+}
+@media (max-width: 600px)
+{
+  section span 
+  {
+    width: calc(20vw - 2px);
+    height: calc(20vw - 2px);
+  }
+}
+article{
+  margin-top: 2em;
+}
+.section1{
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
+}
+article .section1 .image{
+  width: 30%;
+}
+article .section1 .image img{
+  width: 100%;
+}
+article .section1 .image img:hover{
+  transform: scale(0.9);
+}
+article .section1 .text-articles{
+  width: 60%;
+}
+article .section1 .text-articles h2{
+  color: #000;
+}
+article .section1 .text-articles p{
+  width: 100%;
+ text-align: justify;
+}
+.details{
+  display: flex;
+  justify-content: space-around;
+}
+.row-details-first{
+  width: 70%;
+  flex-direction: column;
+  padding: 2em;
+}
+.details .image-detail{
+  width:auto;
+  text-align: center;
+}
+.details .title-details{
+  margin-top: 1em;
+}
+.details .image-detail img{
+  width: 60%;
+  object-fit: contain;
+}
+.details .details-text p{
+  text-align: justify;
+}
+.details .details-tags span:hover{
+  cursor: pointer;
+  background-color: rgb(172, 20, 20);
+}
+.row-details-second{
+  width: 30%;
+  padding: 4em;
+  text-align: center;
+}
+.details-categorie ul li{
+  list-style: none;
+  color: #000;
+}
+.details-articles-recents ul li{
+  list-style: none;
+  color: #000;
+}
+
+.details-categorie ul li a:hover{
+  text-decoration: underline;
+  color: #000;
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  color: #020202;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 1px solid #58595a;
+  margin: 0 2px;
+  border-radius: 4px;
+}
+
+.pagination a:hover {
+  background-color: #58595a;
+  color: white;
+}
+
+.pagination .current {
+  color: #fff;
+  background-color: #58595a;
+  padding: 5px 10px;
+  border: 1px solid #58595a;
+  margin: 0 2px;
+  border-radius: 4px;
+}
+
+/* categorie */
+
+.wrapper{
+  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+.wrapper .card{
+  width: 18rem;
+  margin:1rem 1rem 1rem 0;
+}
+
+/* AJouter un article */
+
+.section_main{
+  padding: 2em;
+  margin: 0 auto;
+  width: 50%;
+}

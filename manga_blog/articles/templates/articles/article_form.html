@@ -1,0 +1,63 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% include 'accounts/navbar.html' %}
+
+<div class="section_main">
+  <form method="post"  enctype="multipart/form-data">
+    <p class="alert alert-danger">{{form.errors}}</p>
+    {% csrf_token %}
+    <div class="row mb-3">
+      <div class="col">
+        <label for="">{{form.title.label}}</label>
+        {{form.title}}
+      </div>
+      <div class="col">
+        <label for="">{{form.publication_date.label}}</label>
+        {{form.publication_date}}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="">{{form.sous_content.label}}</label>
+        {{form.sous_content}}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="">Contenu</label>
+        {{form.content}}
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col">
+        <label for="">{{form.categorie.label}}</label>
+        {{form.categorie}}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="">{{form.genre.label}}</label>
+        {{form.genre}}
+      </div>
+      <div class="col">
+        <label for="">{{form.tag.label}}</label>
+       {{form.tag}}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="">{{form.image_article.label}}</label>
+       {{form.image_article}}
+      </div>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-secondary btn-lg btn-block">Ajouter</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

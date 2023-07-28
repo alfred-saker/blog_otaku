@@ -1,0 +1,83 @@
+
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'accounts/navbar.html' %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{categorie_article.categorie}}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{get_articles.title}}</li>
+  </ol>
+</nav>
+
+<main class="details">
+  <div class="row-details-first">
+    <div class="image-detail">
+      <img src="{{get_articles.image_article.url}}" alt="">
+    </div>
+    <div class="title-details">
+      <h2>{{get_articles.title}}</h2>
+      <p>{{get_articles.publication_date}}</p>
+    </div>
+    <div class="details-text">
+      <p>{{get_articles.content}}</p>
+    </div>
+    <div class="group-opt-article">
+      <a href="{% url 'edit_article' get_articles.id %}" class="btn btn-outline-secondary">Editer</a>
+      <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal{{ get_articles.id }}">Supprimer</button>
+
+      <div class="modal fade" id="deleteModal{{ get_articles.id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirmation de suppression</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                  Êtes-vous sûr de vouloir supprimer cet article ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <!-- Bouton de suppression avec lien vers la vue de suppression -->
+                    <a href="{% url 'delete_article' get_articles.id %}" class="btn btn-danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-details-second">
+    <div class="details-categorie">
+      <h3>Catégories</h3>
+      <ul>
+        {% for categorie in categories %}
+        <a href="{% url 'categorie_by_article' categorie.id %}"><li>{{categorie.categorie}}</li></a>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="details-articles-recents">
+      <h3>Articles récents</h3>
+      {% for article in articles_limit %}
+      <ul>
+        <a href="{% url 'details_articles' article.id %}"><li>{{article.sous_content}}</li></a>
+      </ul>
+      {% endfor %}
+      
+    </div>
+    <hr>
+    <div class="details-tags">
+      <h3>Tag</h3>
+      {% for tag in get_articles.tag.all %}
+      <span class="badge badge-secondary">{{tag.tag}}</span>
+      {% endfor %}
+    </div>
+    <hr>
+    
+  </div>
+
+</main>
+
+
+{% endblock %}

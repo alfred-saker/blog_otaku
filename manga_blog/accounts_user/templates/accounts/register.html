@@ -1,0 +1,44 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+{% include 'accounts/base.html' %}
+  <section>
+    <div class="signin">
+      <div class="content">
+        <h2>Je rejoins l'Otaku team's</h2>
+        <form action="" method="post">
+          <span>
+            {{form.errors}}
+          </span>
+          {% csrf_token %}
+          <div class="form">
+            <div class="inputBox">
+              {{form.username}}
+              <i>Nom d'utilisateur</i>
+            </div>
+            <div class="inputBox">
+              {{form.email}}
+              <i>Email</i>
+            </div>
+            <div class="inputBox">
+              {{form.password1}}
+              <i>Mot de passe</i>
+            </div>
+            <div class="inputBox">
+              {{form.password2}}
+              <i>Confirmer mot de passe</i>
+            </div>
+            <div class="links">
+              <p style="color: white;"></p><a href="{%url 'login' %}">Je suis deja un membre de Otaku Team's</a>
+            </div>
+
+            <div class="inputBox">
+              <input type="submit" value="je m'inscris" />
+            </div>
+          <div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section> <!-- partial -->
+{% endblock %}

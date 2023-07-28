@@ -1,0 +1,74 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'accounts/navbar.html' %}
+
+<div>
+  <h2 style="text-align: center; padding: 1em;">Actualités Manga</h2>
+</div>
+<div>
+</div>
+<div class="btn-add" style="margin-left: 3em;"><a href="{% url 'add_article' %}" class="btn btn-secondary">Ajouter un article</a></div>
+<hr>
+{% if messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+<article>
+  <!-- <form method="get">
+    <div class="row mb-3">
+      <div class="col">
+        {{filter.form}}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-secondary btn-sm">Filtrer</button>
+  </form>
+  <ul>
+    {% for filters in filter.qs %}
+    <li>{{ filters.title }} - {{ filters.tag }}</li>
+    {% endfor %}
+  </ul> -->
+
+  {% for article in page %}
+    <div class="section1">
+      <div class="image">
+        <a href="{% url 'details_articles' article.id %}"><img src="{% static 'images/' %}{{article.image_article}}" alt="Image Goku"></a>
+      </div>
+      <div class="text-articles">
+        <div class="titre-article">
+          <a href="{% url 'details_articles' article.id %}"><h2>{{article.title}}</h2></a>
+        </div>
+        <div class="date_article">{{article.publication_date|date:"d F Y"}} <span>modifié le</span> {{article.updated_at}}</div>
+        <p>{{article.sous_content}}</p>
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+  <div class="pagination">
+    <span class="step-links">
+        {% if page.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+          Page {{ page.number }} of {{ page.paginator.num_pages }}.
+        </span>
+
+        {% if page.has_next %}
+          <a href="?page={{ page.next_page_number }}">next</a>
+          <a href="?page={{ page.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+</article>
+
+{% endblock %}

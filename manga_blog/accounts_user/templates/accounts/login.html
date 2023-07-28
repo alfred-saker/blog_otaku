@@ -1,0 +1,36 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+{% include 'accounts/base.html' %}
+
+  <section>
+    <div class="signin">
+      <div class="content">
+        <h2>Connecte toi pour rejoindre l'Otaku team's</h2>
+        {% for messages in messages %}
+          <span>{{messages}}</span> 
+        {% endfor %}
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="form">
+            <div class="inputBox">
+              {{form.username}}
+              <i>Nom d'utilisateur</i>
+            </div>
+            <div class="inputBox">
+              {{form.password}} <i>Mot de passe</i>
+            </div>
+            <div class="links">
+              <a href="{% url 'reset_password' %}">Mot de passe oublié?</a> <a href="{% url 'register' %}">Je ne suis pas encore membre</a>
+            </div>
+
+            <div class="inputBox">
+              <input type="submit" value="Connexion" />
+            </div>
+          </div>
+        </form>
+       
+      </div>
+    </div>
+  </section> <!-- partial -->
+{% endblock %}

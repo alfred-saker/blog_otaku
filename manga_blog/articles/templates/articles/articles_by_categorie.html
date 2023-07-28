@@ -1,0 +1,46 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'accounts/navbar.html' %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{category}}</li>
+  </ol>
+</nav>
+<article>
+  {% for article in page %}
+    <div class="section1">
+      <div class="image">
+        <a href="{% url 'details_articles' article.id %}"><img src="{{article.image_article.url}}" alt="Image Anime Manga"></a>
+      </div>
+      <div class="text-articles">
+        <div class="titre-article">
+          <a href="{% url 'details_articles' article.id %}"><h2>{{article.title}}</h2></a>
+        </div>
+        <div class="date_article">{{article.publication_date}}</div>
+        <p>{{article.sous_content}}</p>
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+  <div class="pagination">
+    <span class="step-links">
+        {% if page.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+          Page {{ page.number }} of {{ page.paginator.num_pages }}.
+        </span>
+
+        {% if page.has_next %}
+          <a href="?page={{ page.next_page_number }}">next</a>
+          <a href="?page={{ page.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</article>
+
+{% endblock %}
