@@ -9,7 +9,9 @@
 </div>
 <div>
 </div>
+{% if user.is_authenticated %}
 <div class="btn-add" style="margin-left: 3em;"><a href="{% url 'add_article' %}" class="btn btn-secondary">Ajouter un article</a></div>
+{% endif %}
 <hr>
 {% if messages %}
   <div class="alert alert-success alert-dismissible fade show" role="alert">

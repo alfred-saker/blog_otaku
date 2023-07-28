@@ -25,9 +25,10 @@
       <p>{{get_articles.content}}</p>
     </div>
     <div class="group-opt-article">
-      <a href="{% url 'edit_article' get_articles.id %}" class="btn btn-outline-secondary">Editer</a>
-      <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal{{ get_articles.id }}">Supprimer</button>
-
+      {% if user.is_authenticated %}  
+        <a href="{% url 'edit_article' get_articles.id %}" class="btn btn-outline-secondary">Editer</a>
+        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal{{ get_articles.id }}">Supprimer</button>
+      {% endif %} 
       <div class="modal fade" id="deleteModal{{ get_articles.id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
