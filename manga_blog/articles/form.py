@@ -18,4 +18,15 @@ class ArticleForm(forms.ModelForm):
       'categorie': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Catégories'}),
       'tag': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Tags'}),
       'genre': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Genres'}),
-        }
+    }
+
+class CategorieForm(forms.ModelForm):
+  class Meta:
+    model = Categorie
+    fields = '__all__'
+
+    widgets = {
+      'categorie': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom de la categorie'}),
+      'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Description de la categorie'}),
+      'image_categorie': forms.FileInput(attrs={'class': 'form-control-file', 'placeholder': 'Image de la catégorie'}),
+    }

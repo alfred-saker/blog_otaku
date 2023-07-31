@@ -26,19 +26,6 @@
   </div>
 {% endif %}
 <article>
-  <!-- <form method="get">
-    <div class="row mb-3">
-      <div class="col">
-        {{filter.form}}
-      </div>
-    </div>
-    <button type="submit" class="btn btn-secondary btn-sm">Filtrer</button>
-  </form>
-  <ul>
-    {% for filters in filter.qs %}
-    <li>{{ filters.title }} - {{ filters.tag }}</li>
-    {% endfor %}
-  </ul> -->
 
   {% for article in page %}
     <div class="section1">
@@ -49,7 +36,7 @@
         <div class="titre-article">
           <a href="{% url 'details_articles' article.id %}"><h2>{{article.title}}</h2></a>
         </div>
-        <div class="date_article">{{article.publication_date|date:"d F Y"}} <span>modifié le</span> {{article.updated_at}}</div>
+        <div class="date_article">{{article.publication_date|date:"d F Y"}}</div>
         <p>{{article.sous_content}}</p>
       </div>
     </div>

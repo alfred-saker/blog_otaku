@@ -13,7 +13,7 @@ from articles.models import Article
 # @login_required(login_url='login')
 def home(request):
   articles = Article.objects.all()
-  article_filter = ArticleFilter(request.GET, queryset=Article.objects.all())
+  # article_filter = ArticleFilter(request.GET, queryset=Article.objects.all())
   
   # Nombre d'articles à afficher par page
   items_per_page = 3
@@ -23,7 +23,7 @@ def home(request):
   page_number = request.GET.get('page', 1)
   # Obtenez la page demandée à partir de l'objet Paginator
   page = paginator.get_page(page_number)
-  context = {'page':page, 'filter':article_filter}
+  context = {'page':page}
   return render(request, 'accounts/home.html',context)
 
 def register_view(request):

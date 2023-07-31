@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib import messages
 
-from .form import ArticleForm
+from .form import ArticleForm,CategorieForm
 
 from .models import *
 
@@ -42,9 +42,21 @@ def delete_articles(request, id):
   article = get_object_or_404(Article, id=id)
   article.delete()
   messages.info(request, 'Article supprimé')
-
     # Rediriger vers la page de confirmation ou autre vue après la suppression
   return redirect('home')
+  
+def add_categorie(request):
+  if request.method == 'POST':
+    form = CategorieForm(request.POST, request.FILES)
+    if form.is_valid():
+      form.save()
+      messages.info(request, 'Categorie créee avec success')
+      return redirect('all_categorie')
+  else:
+    form = CategorieForm()
+  context = {'form':form}
+  return render(request, 'articles/categorie_form.html', context)
+
 def categorie(request):
   categories = Categorie.objects.all().order_by('categorie')
   # Nombre d'articles à afficher par page
@@ -61,18 +73,15 @@ def categorie(request):
   return render(request, 'articles/categories.html', context)
 
 def details_articles(request,id):
-  articles_limit = Article.objects.order_by('-created_at')[:3]
+  articles_limit = Article.objects.all().order_by('-created_at')[:3]
 
   get_articles = get_object_or_404(Article, id=id)
 
   categories = Categorie.objects.all()
 
-  categorie_article = Categorie.objects.get(id=id)
-
   context = {
     'get_articles':get_articles,
     'categories':categories,
-    'categorie_article':categorie_article,
     'articles_limit':articles_limit
     }
   return render(request, 'articles/details_articles.html', context)

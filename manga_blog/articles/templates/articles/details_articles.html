@@ -7,7 +7,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{categorie_article.categorie}}</li>
     <li class="breadcrumb-item active" aria-current="page">{{get_articles.title}}</li>
   </ol>
 </nav>
@@ -53,8 +52,8 @@
     <div class="details-categorie">
       <h3>Catégories</h3>
       <ul>
-        {% for categorie in categories %}
-        <a href="{% url 'categorie_by_article' categorie.id %}"><li>{{categorie.categorie}}</li></a>
+        {% for category in get_articles.categorie.all %}
+        <a href="{% url 'categorie_by_article' get_articles.id %}"><li>{{category.categorie}}</li></a>
         {% endfor %}
       </ul>
     </div>
