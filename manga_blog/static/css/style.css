@@ -284,6 +284,12 @@ article .section1 .text-articles p{
   margin:1rem 1rem 1rem 0;
 }
 
+.filter{
+  width: 70%;
+  padding: 1em;
+  margin: 1em auto;
+}
+
 /* AJouter un article */
 
 .section_main{

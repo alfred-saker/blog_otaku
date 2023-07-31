@@ -7,23 +7,23 @@ from django.core.paginator import Paginator
 from articles.filters import ArticleFilter
 from django.contrib import messages
 
-from articles.models import Article
+from articles.models import Article, Categorie, Genre
 
 # Create your views here.
 # @login_required(login_url='login')
 def home(request):
-  articles = Article.objects.all()
-  # article_filter = ArticleFilter(request.GET, queryset=Article.objects.all())
+  articles = Article.objects.order_by('-created_at')
+  filter = ArticleFilter(request.GET, queryset=articles)
   
   # Nombre d'articles à afficher par page
   items_per_page = 3
   # Créez un objet Paginator avec les articles et le nombre d'éléments par page
-  paginator = Paginator(articles, items_per_page)
+  paginator = Paginator(filter.qs, items_per_page)
   # Récupérez le numéro de page à partir des paramètres GET, par défaut à la première page (page 1)
   page_number = request.GET.get('page', 1)
   # Obtenez la page demandée à partir de l'objet Paginator
   page = paginator.get_page(page_number)
-  context = {'page':page}
+  context = {'page':page,'filter':filter}
   return render(request, 'accounts/home.html',context)
 
 def register_view(request):
@@ -60,5 +60,18 @@ def logout_view(request):
   return redirect('login')
 
 def profil_user(request):
-  context = {}
+  user = request.user
+
+  nbre_article = Article.objects.count()
+
+  nbre_categorie = Categorie.objects.count()
+
+  nbre_genre = Genre.objects.count()
+
+  context = {
+    'user':user,
+    'nbre_article':nbre_article,
+    'nbre_categorie':nbre_categorie,
+    'nbre_genre':nbre_genre
+  }
   return render(request, 'accounts/profil_user.html', context)
