@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
+import django_heruko
+import dj_database_url
 import os
 from pathlib import Path
 from django.core.mail import send_mail
@@ -24,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b(*@v#%glmji^k^3&2yeu$2y#caj!*qx^cllyu6j=p3t%d7ry#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://otakuteams-528bd071c524.herokuapp.com/ ', '127.0.0.1']
 
 
 # Application definition
@@ -52,9 +55,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'manga_blog.urls'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 TEMPLATES = [
     {
@@ -78,15 +83,18 @@ WSGI_APPLICATION = 'manga_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'otaku_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
+#         'PORT': '5432', 
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'otaku_db',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
-        'PORT': '5432', 
-    }
+    'default':dj_database_url.config()
 }
 
 
@@ -129,11 +137,15 @@ MEDIA_ROOT = '/images/'
 STATICFILES_DIRS = [
   os.path.join(BASE_DIR, 'static')
 ]
+# STATIC_ROOT = [
+#   os.path.join(BASE_DIR, 'staticfiles')
+# ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+django_heruko.settings(locals())
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
