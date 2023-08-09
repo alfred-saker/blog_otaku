@@ -35,7 +35,6 @@
   </div>
 {% endif %}
 <article>
-  
   {% for article in page %}
     {% if article %}
       <div class="section1">
@@ -46,6 +45,7 @@
           <div class="titre-article">
             <a href="{% url 'details_articles' article.id %}"><h2>{{article.title}}</h2></a>
           </div>
+          <div class="auteur_article"><span style="font-style: italic;">Auteur : {{article.author.username}}</span></div>
           <div class="date_article">{{article.publication_date|date:"d F Y"}}</div>
           <p>{{article.sous_content}}</p>
         </div>
@@ -64,7 +64,7 @@
         <span class="current">
           Page {{ page.number }} of {{ page.paginator.num_pages }}.
         </span>
-
+  
         {% if page.has_next %}
           <a href="?page={{ page.next_page_number }}">next</a>
           <a href="?page={{ page.paginator.num_pages }}">last &raquo;</a>

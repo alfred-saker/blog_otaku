@@ -1,5 +1,7 @@
 from django.forms import ModelForm
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import *
 
 class ArticleForm(forms.ModelForm):
@@ -29,4 +31,17 @@ class CategorieForm(forms.ModelForm):
       'categorie': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom de la categorie'}),
       'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Description de la categorie'}),
       'image_categorie': forms.FileInput(attrs={'class': 'form-control-file', 'placeholder': 'Image de la catégorie'}),
+    }
+
+class CommentForm(forms.ModelForm):
+  class Meta:
+    model = Comment
+    fields = ['content']
+
+    labels = {
+      'content':'Commentaires'
+    }
+    
+    widgets = {
+      'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 4,'cols':30, 'placeholder': 'Commencez à ecrire...'}),
     }

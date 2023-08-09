@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import django_heruko
-import dj_database_url
+# import django_heruko
+# import dj_database_url
 import os
 from pathlib import Path
 from django.core.mail import send_mail
@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b(*@v#%glmji^k^3&2yeu$2y#caj!*qx^cllyu6j=p3t%d7ry#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://otakuteams-528bd071c524.herokuapp.com/ ', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'accounts_user',
+    # 'accounts_user',
     'articles',
     'django_filters',
+    'accounts_user.apps.AccountsUserConfig'
 ]
 
 MIDDLEWARE = [
@@ -55,11 +56,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'manga_blog.urls'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 TEMPLATES = [
     {
@@ -83,19 +84,19 @@ WSGI_APPLICATION = 'manga_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'otaku_db',
-#         'USER': 'postgres',
-#         'PASSWORD': 'root',
-#         'HOST': 'localhost',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
-#         'PORT': '5432', 
-#     }
-# }
 DATABASES = {
-    'default':dj_database_url.config()
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'otaku_db',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
+        'PORT': '5432', 
+    }
 }
+# DATABASES = {
+#     'default':dj_database_url.config()
+# }
 
 
 # Password validation
@@ -145,7 +146,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heruko.settings(locals())
+# django_heruko.settings(locals())
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

@@ -5,13 +5,20 @@
 
 {% block content %}
 {% include 'accounts/navbar.html' %}
-
+<div class="row">
+  <div class="col">
+    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ajouter un article</li>
+      </ol>
+    </nav>
+  </div>
+</div>
 <div class="section_main">
   <form method="post"  enctype="multipart/form-data">
     {{form.errors}}
-    <!-- <p class="alert alert-danger"></p> -->
-    {% if form.errors %}
-    {% endif %}
+
     {% csrf_token %}
     <div class="row mb-3">
       <div class="col">

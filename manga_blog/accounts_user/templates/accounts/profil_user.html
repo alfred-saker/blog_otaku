@@ -1,9 +1,21 @@
 {% extends 'accounts/base.html' %}
-
+{% load static %}
 {% block content %}
 {% include 'accounts/navbar.html' %}
 <hr>
 <section style="background-color: #eee;">
+  {% if messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
   <div class="container py-5">
     <div class="row">
       <div class="col">
@@ -21,18 +33,23 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
+            {% if user_profile.avatar %}
+            <img src="{{user_profile.avatar.url}}" alt="avatar"
+            class="rounded-circle img-fluid" style="width:200px;">
+            {% else %}
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
+            class="rounded-circle img-fluid" style="width: 150px;">
+            {% endif %}
+            
             <h5 class="my-3">{{user.username}}</h5>
             {% if user.is_superuser %}
-            <p class="text-muted mb-0">Admin Otaku Team's</p>
+            <p class="text-muted mb-0">Admin Otaku Team's{{user_profile.avatar.url}}</p>
             {% else %}
             <p class="text-muted mb-0"></p>
             {% endif %}
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
-
           <br>
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
@@ -56,45 +73,61 @@
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
-            <div class="row">
-              <div class="col-sm-9">
-               <input type="text" class="form-control" value="{{user.first_name}}" placeholder="Nom">
+            <form action="{% url 'change_image_profil' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <h2>Mettre à jour votre Profil</h2>
+              <div class="row">
+                <div class="col-sm-9">
+                  {{image_form}}
+                </div>
               </div>
-            </div>
+              <br>
+              <button class="btn btn-info btn-sm" type="submit">Mettre à jour</button>
+            </form>
             <hr>
-            <div class="row">
-              <div class="col-sm-9">
-               <input type="text" class="form-control" value="{{user.last_name}}" placeholder="Prenom">
+            <form action="{% url 'change_info' %}" method="post">
+              {% if user_form.errors %}
+                <p style="color: red;">{{user_form.errors}}</p>
+              {% endif %}
+              {% csrf_token %}
+              <h3>Informations personnelles</h3>
+              <hr>
+              <div class="row">
+                <div class="col-sm-9">
+                {{user_form.username}}
+                </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-9">
-               <input type="text" class="form-control" value="{{user.username}}">
+              <hr>
+              <div class="row">
+                <label for="{{user_form.field.label}}"></label>
+                <div class="col-sm-9">
+                {{user_form.email}}
+                </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="{{user.email}}">
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Rôle</p>
-              </div>
-              <div class="col-sm-9">
-                {% if user.is_superuser %}
-                <p class="text-muted mb-0">Admin Otaku Team's</p>
-                {% else %}
-                <p class="text-muted mb-0"></p>
-                {% endif %}
-              </div>
-            </div>
-            <hr>
+              <hr>
+              <button class="btn btn-primary btn-sm" type="submit">Mettre à jour</button>
+            </form>
           </div>
         </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3>Paramètres de connexion</h3>
+            <form action="{% url 'change_password' %}" method="post">
+              {% csrf_token %}
+              {% if user_form.errors %}
+              <p style="color: red;">{{password_form.errors}}</p>
+              {% endif %}
+              <div class="row">
+                <div class="col-sm-9">
+                  {{password_form.as_p}}
+                </div>
+              </div>
+              <hr>
+              <button class="btn btn-danger btn-sm" type="submit">Changer mot de passe</button>
+            </form>
+          </div>
+        </div>
+        <div></div>
       </div>
     </div>
   </div>

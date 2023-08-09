@@ -32,10 +32,18 @@ class Article(models.Model):
   publication_date = models.DateTimeField()
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  image_article = models.ImageField(upload_to='article_images/', blank=True, null=True)
+  image_article = models.ImageField(default='avatar.jpg',upload_to='article_images/', blank=True, null=True)
   categorie = models.ManyToManyField(Categorie)
   tag = models.ManyToManyField(Tag)
   genre = models.ManyToManyField(Genre)
 
   def __str__(self):
     return self.title
+
+
+class Comment(models.Model):
+
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  article = models.ForeignKey(Article, on_delete=models.CASCADE)
+  content = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)

@@ -16,7 +16,11 @@ urlpatterns = [
 
   path('profil_user/',views.profil_user,name='profile_user'),
 
+  path('change_info_user/',views.change_info_user,name="change_info"),
 
+  path('change_password/',views.change_password,name="change_password"),
+
+  path('change_profile_image',views.change_profile_image, name="change_image_profil"),
 
   # URls accounts reset password user
   path('reset_password/', auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"),name="reset_password"),

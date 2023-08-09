@@ -18,6 +18,14 @@
     </div>
     <div class="title-details">
       <h2>{{get_articles.title}}</h2>
+      <p>
+        Publié par 
+        {% if get_articles.author.is_staff %}
+        {{get_articles.author.username}} <span style="font-style: italic;"> (admin) </span>
+        {% else %}
+        {{get_articles.author.username}} 
+        {% endif %}
+      </p>
       <p>{{get_articles.publication_date}}</p>
     </div>
     <div class="details-text">
@@ -25,35 +33,98 @@
     </div>
     <div class="group-opt-article">
       {% if user.is_authenticated %}  
-        <a href="{% url 'edit_article' get_articles.id %}" class="btn btn-outline-secondary">Editer</a>
-        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal{{ get_articles.id }}">Supprimer</button>
+        {% if user == get_articles.author %}
+          <a href="{% url 'edit_article' get_articles.id %}" class="btn btn-outline-secondary">Editer</a>
+          <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal{{ get_articles.id }}">Supprimer</button>
+        {% endif %}
       {% endif %} 
       <div class="modal fade" id="deleteModal{{ get_articles.id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Confirmation de suppression</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                </div>
-                <div class="modal-body">
-                  Êtes-vous sûr de vouloir supprimer cet article ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <!-- Bouton de suppression avec lien vers la vue de suppression -->
-                    <a href="{% url 'delete_article' get_articles.id %}" class="btn btn-danger">Supprimer</a>
-                </div>
+              <div class="modal-header">
+                <h5 class="modal-title">Confirmation de suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+              </div>
+              <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet article ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <!-- Bouton de suppression avec lien vers la vue de suppression -->
+                <a href="{% url 'delete_article' get_articles.id %}" class="btn btn-danger">Supprimer</a>
+              </div>
             </div>
         </div>
       </div>
     </div>
-  </div>
+
+    
+    <div class="group_comment">
+      <h2>Laisser un commentaire</h2>
+      {% if user.is_authenticated %}
+      <p>Vous êtes connectés en tant que <strong>{{request.user}}</strong> . Les champs obligatoires sont indiqués avec <span style="color: red;">*</span></p>
+      <form action="{% url 'create_comment' get_articles.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="article_id" value="{{ get_articles.id }}">
+        <div class="row mb-3">
+          <div class="col">
+            <label for="">Commentaire<span style="color: red;">*</span></label>
+            {{form_comment.content}}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-sm">Laisser un commentaire</button>
+      </form>
+      {% else %}
+      <p>Votre adresse e-mail ne sera pas publiée. Les champs obligatoires sont indiqués avec <span style="color: red;">*</span></p>
+      {% if messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <ul class="messages">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <p>Vous devriez être connecté pour commenter <a href="{% url 'login' %}">(Connectez-vous)</a></p>
+        <form action="{% url 'create_comment' get_articles.id %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="article_id" value="{{ get_articles.id }}">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="">Commentaires<span style="color: red;">*</span></label>
+              {{form_comment.content}}
+            </div>
+          </div>
+          <button type="submit" class="btn btn-outline-success btn-sm">Laisser un commentaire</button>
+          <button  class="btn btn-outline-success btn-sm">Voir les commentaires</button>
+        </form>
+        {% endif %}
+      </div>
+      <div class="show-comment">
+        <h3>Tous les commentaires</h3>
+        {% for comments in get_comment %}
+        <div class="row_comment">
+          
+          <div class="comment_profil">
+            <img src="{% static 'images/' %}{{comments.user.userprofile.avatar}}" alt="Avatar de {{comments.user.username}}" class="rounded-circle" style="width:70px;">
+            <p style="color: black;">{{comments.user.username}}</p>
+          </div>
+          <div class="text-comment">
+            <p>{{comments.content}}</p>
+            <p style="font-size: 12px;font-style: italic;">Commenté le {{comments.created_at|date:"d F Y"}}</p>
+          </div>
+        </div>
+        <hr>
+        {% endfor %}
+      </div>
+    </div>
+    
   <div class="row-details-second">
     <div class="details-categorie">
       <h3>Catégories</h3>
       <ul>
-        {% for category in get_articles.categorie.all %}
-        <a href="{% url 'categorie_by_article' get_articles.id %}"><li>{{category.categorie}}</li></a>
+        {% for category in categories %}
+        <a href="{% url 'categorie_by_article' category.id %}"><li>{{category.categorie}}</li></a>
         {% endfor %}
       </ul>
     </div>
@@ -76,8 +147,6 @@
     <hr>
     
   </div>
-
 </main>
-
 
 {% endblock %}

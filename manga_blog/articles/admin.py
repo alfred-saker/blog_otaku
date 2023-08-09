@@ -8,4 +8,6 @@ admin.site.register(Tag)
 admin.site.register(Genre)
 admin.site.register(Categorie)
 
+admin.site.register(Comment)
+
 
