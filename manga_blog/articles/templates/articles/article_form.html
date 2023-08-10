@@ -1,20 +1,9 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
 
-
-
 {% block content %}
 {% include 'accounts/navbar.html' %}
-<div class="row">
-  <div class="col">
-    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Ajouter un article</li>
-      </ol>
-    </nav>
-  </div>
-</div>
+
 <div class="section_main">
   <form method="post"  enctype="multipart/form-data">
     {{form.errors}}
@@ -66,7 +55,7 @@
       </div>
     </div>
     <div class="col">
-      <button type="submit" class="btn btn-secondary btn-lg btn-block">Ajouter</button>
+      <button type="submit" class="btn btn-primary" style="width:auto;">Enregister</button>
     </div>
   </form>
 </div>

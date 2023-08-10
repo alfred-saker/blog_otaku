@@ -1,1 +1,4 @@
 blog_env/
+*.pyc
+staticfiles
+.env

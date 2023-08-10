@@ -4,22 +4,22 @@
 {% block content %}
 {% include 'accounts/navbar.html' %}
 
-<div>
-  <h2 style="text-align: center; padding: 1em;"></h2>
-</div>
-<div class="filter">
+<div class="filter" id="filterBlock">
   <form method="get">
     {{filter.form}}
-    <div class="form-group">
+    <div class="form-group" style="padding: 1em;">
       <button type="submit" class="btn btn-secondary btn-sm">Rechercher</button>
-      <a href="{% url 'home' %}" class="btn btn-secondary btn-sm">Renitialiser </a>
-      {% if user.is_authenticated %}
-      <a href="{% url 'add_article' %}" class="btn btn-info btn-sm">Ajouter un article</a>
-      {% endif %}
+      <a href="{% url 'home' %}" class="btn btn-danger btn-sm">Renitialiser </a>
     </div>
     <div class="form-group">
     </div>
   </form>
+</div>
+<div style="padding: 1em;">
+  <a class="btn btn-danger" style="width:auto;" id="toggleFilterBtn">Rechercher un article</a>
+  {% if user.is_authenticated %}
+    <a href="{% url 'add_article' %}" class="btn btn-primary" style="width:auto;">Ajouter un article</a>
+    {% endif %}
 </div>
 <hr>
 {% if messages %}
@@ -45,7 +45,9 @@
           <div class="titre-article">
             <a href="{% url 'details_articles' article.id %}"><h2>{{article.title}}</h2></a>
           </div>
-          <div class="auteur_article"><span style="font-style: italic;">Auteur : {{article.author.username}}</span></div>
+          <div class="auteur_article">
+            <span style="font-style: italic;">Auteur : {{article.author.username}}</span>
+          </div>
           <div class="date_article">{{article.publication_date|date:"d F Y"}}</div>
           <p>{{article.sous_content}}</p>
         </div>
@@ -53,24 +55,24 @@
     {% else %}
       <h3>Article non trouvé</h3>
     {% endif %}
-      <hr>
-  {% endfor %}
-  <div class="pagination">
-    <span class="step-links">
+    {% endfor %}
+    <div class="pagination">
+      <span class="step-links">
         {% if page.has_previous %}
-          <a href="?page=1">&laquo; first</a>
-          <a href="?page={{ page.previous_page_number }}">previous</a>
-        {% endif %}
-        <span class="current">
-          Page {{ page.number }} of {{ page.paginator.num_pages }}.
-        </span>
-  
-        {% if page.has_next %}
-          <a href="?page={{ page.next_page_number }}">next</a>
-          <a href="?page={{ page.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-  </div>
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page.previous_page_number }}">previous</a>
+          {% endif %}
+          <span class="current">
+            Page {{ page.number }} of {{ page.paginator.num_pages }}.
+          </span>
+    
+          {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">next</a>
+            <a href="?page={{ page.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+  <hr>
 </article>
 
 {% endblock %}

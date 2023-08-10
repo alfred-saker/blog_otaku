@@ -39,6 +39,7 @@ def edit_articles(request,id):
       form.save()
       messages.success(request, 'Votre article a été modifiée avec success')
       return redirect('home')
+
   context = {'form':form}
   return render(request, 'articles/article_form.html',context)
 

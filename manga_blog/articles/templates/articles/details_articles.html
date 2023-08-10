@@ -4,12 +4,6 @@
 {% block content %}
 {% include 'accounts/navbar.html' %}
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{get_articles.title}}</li>
-  </ol>
-</nav>
 
 <main class="details">
   <div class="row-details-first">
@@ -100,11 +94,12 @@
         </form>
         {% endif %}
       </div>
+      
+      {% if get_comment %}
       <div class="show-comment">
         <h3>Tous les commentaires</h3>
         {% for comments in get_comment %}
         <div class="row_comment">
-          
           <div class="comment_profil">
             <img src="{% static 'images/' %}{{comments.user.userprofile.avatar}}" alt="Avatar de {{comments.user.username}}" class="rounded-circle" style="width:70px;">
             <p style="color: black;">{{comments.user.username}}</p>
@@ -114,9 +109,11 @@
             <p style="font-size: 12px;font-style: italic;">Commenté le {{comments.created_at|date:"d F Y"}}</p>
           </div>
         </div>
-        <hr>
         {% endfor %}
+        <hr>
       </div>
+      
+      {% endif %}
     </div>
     
   <div class="row-details-second">
@@ -128,6 +125,7 @@
         {% endfor %}
       </ul>
     </div>
+    <hr>
     <div class="details-articles-recents">
       <h3>Articles récents</h3>
       {% for article in articles_limit %}
@@ -141,11 +139,9 @@
     <div class="details-tags">
       <h3>Tag</h3>
       {% for tag in get_articles.tag.all %}
-      <span class="badge badge-secondary">{{tag.tag}}</span>
+        <span class="badge badge-secondary">{{tag.tag}}</span>
       {% endfor %}
     </div>
-    <hr>
-    
   </div>
 </main>
 

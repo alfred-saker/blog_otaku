@@ -1,20 +1,15 @@
-$(document).ready(function() {
 
-    
-  var readURL = function(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
+const filterBlock = document.getElementById("filterBlock");
+const toggleFilterBtn = document.getElementById("toggleFilterBtn");
 
-          reader.onload = function (e) {
-              $('.avatar').attr('src', e.target.result);
-          }
-  
-          reader.readAsDataURL(input.files[0]);
-      }
-  }
-  
-
-  $(".file-upload").on('change', function(){
-      readURL(this);
-  });
+toggleFilterBtn.addEventListener("click", function () {
+    if (filterBlock.style.display === "none") {
+        filterBlock.style.display = "block";
+    } else {
+        filterBlock.style.display = "none";
+    }
 });
+
+
+
+

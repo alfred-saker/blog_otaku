@@ -6,13 +6,159 @@
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
 }
-/* body 
-{
+a{
+  text-decoration: none;
+}
+.main_auth{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-} */
+  padding: 1em;
+  justify-content: space-around;
+  background-color: rgb(245, 255, 245);
+}
+.div_register{
+  width: 40%;
+  padding: 1em;
+  /* background-color: rgb(147, 218, 147); */
+  border-radius: 5px 5px 5px 5px;
+}
+.div_register .btn_register{
+  width: 30%;
+}
+.div_register input{
+  width:100%;
+  padding:10px;
+  border: 1px solid rgb(194, 190, 190);
+  margin-bottom: 1em;
+  border-radius: 5px 5px 5px 5px;
+}
+.div_register label{
+  margin-bottom:5px;
+}
+.div_register .btn_register button{
+  width: 100%;
+  padding:9px;
+  color: white;
+  border: 1px solid white;
+  background-color: rgb(9, 141, 9);
+  border-radius: 5px 5px 5px 5px;
+}
+.div_login{
+  width: 40%;
+  padding: 1em;
+  /* background-color: rgb(53, 54, 53); */
+  border-radius: 5px 5px 5px 5px;
+}
+.div_login h2{
+  width: auto;
+  padding: 5px;
+}
+.div_login p{
+  margin-top: 1em;
+}
+.div_login p a{
+  color: #000;
+}
+.div_login p a:hover{
+  color: #000;
+  text-decoration: underline;
+}
+.div_login input{
+  width:100%;
+  padding:10px;
+  margin-bottom: 1em;
+  border: 1px solid  rgb(194, 190, 190);
+  /* background-color: #0f0; */
+  border-radius: 5px 5px 5px 5px;
+}
+.div_login .btn_login{
+  width: 30%;
+}
+.div_login .btn_login button{
+  padding: 10px;
+  width: 100%;
+  border: 1px solid white;
+  background-color: rgb(9, 141, 9);
+  border-radius: 5px 5px 5px 5px;
+  color: white;
+}
+.div_reset_password{
+  width: 50%;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: rgb(210, 213, 210);
+}
+.div_reset_password .btn_reset_password{
+  width: 100%;
+}
+.div_reset_password .btn_reset_password button{
+  padding: 10px;
+  width: 100%;
+  border: 1px solid white;
+  background-color: rgb(6, 74, 6);
+  border-radius: 5px 5px 5px 5px;
+  color: white;
+}
+.div_reset_password input{
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid rgb(194, 190, 190);
+}
+.div_title_reset{
+  padding: 1em;
+  text-align: center;
+}
+.msg_success_reset{
+  width: 65%;
+  padding: 2em;
+  background-color: rgb(155, 158, 155);
+  margin: 4em auto;
+}
+.msg_success_reset h2{
+text-align: center;
+}
+.div_reset_form .btn_reset_form{
+  width: 100%;
+}
+.div_reset_form .btn_reset_form button{
+  padding: 10px;
+  width: 100%;
+  border: 1px solid white;
+  background-color: rgb(6, 74, 6);
+  border-radius: 5px 5px 5px 5px;
+  color: white;
+}
+.div_reset_form input{
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid rgb(194, 190, 190);
+}
+.div_reset_form{
+  margin: 5em auto;
+  background-color: #0f0;
+  width: 50%;
+  padding: 2em;
+  background-color: rgb(210, 213, 210);
+}
+.div_reset_password_done{
+  background-color: rgb(210, 213, 210);
+  margin:4em auto;
+  padding: 2em;
+  width: 50%;
+}
+.btn_return_login{
+  padding: 11px;
+  background-color: rgb(6, 74, 6);
+  width: 30%;
+  text-align: center;
+  border-radius: 5px 5px 5px 5px;
+}
+.btn_return_login a{
+  width: 100%;
+  color: white;
+}
+
 section 
 {
   position: absolute;
@@ -26,17 +172,6 @@ section
   /* overflow: hidden; */
 }
 
-@keyframes animate 
-{
-  0%
-  {
-    transform: translateY(-100%);
-  }
-  100%
-  {
-    transform: translateY(100%);
-  }
-}
 section span 
 {
   color: white;
@@ -103,23 +238,7 @@ section .signin .content .form .inputBox input
   font-weight: 500;
   font-size: 1em;
 }
-section .signin .content .form .inputBox i 
-{
-  position: absolute;
-  left: 0;
-  padding: 15px 10px;
-  font-style: normal;
-  color: #aaa;
-  transition: 0.5s;
-  pointer-events: none;
-}
-.signin .content .form .inputBox input:focus ~ i,
-.signin .content .form .inputBox input:valid ~ i
-{
-  transform: translateY(-7.5px);
-  font-size: 0.8em;
-  color: #fff;
-}
+
 .signin .content .form .links 
 {
   position: relative;
@@ -197,8 +316,6 @@ article .section1 .text-articles p{
 .details{
   display: flex;
   justify-content: space-around;
-  /* max-width: 700px; */
-  /* flex-wrap: wrap; */
 }
 .row-details-first{
   width: 70%;
@@ -227,7 +344,11 @@ article .section1 .text-articles p{
   width: 30%;
   padding: 4em;
   text-align: center;
+  border-left: 2px solid rgb(141, 141, 140);
+  margin-top: 1em;
+  height:600px;
 }
+
 .details-categorie ul li{
   list-style: none;
   color: #000;
@@ -288,9 +409,11 @@ article .section1 .text-articles p{
 }
 
 .filter{
-  width: 70%;
+  background-color: #ccc;
+  width: 100%;
   padding: 1em;
   margin: 1em auto;
+  display: none;
 }
 
 /* AJouter un article */
@@ -408,6 +531,22 @@ article .section1 .text-articles p{
     width: 100%;
   }
   .details .details-text p{
+    width: 100%;
+  }
+  .main_auth{
+    display: block;
+    padding: 1em;
+  }
+  .div_login{
+    width: 100%;
+  }
+  .div_register{
+    width: 100%;
+  }
+  .msg_success_reset{
+    width: 100%;
+  }
+  .div_reset_password{
     width: 100%;
   }
 }

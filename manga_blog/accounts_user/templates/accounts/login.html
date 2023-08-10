@@ -1,34 +1,46 @@
 {% extends 'accounts/base.html' %}
+{% load static %}
 
 {% block content %}
+{% include 'accounts/navbar.html' %}
 
-  <section>
-    <div class="signin">
-      <div class="content">
-        <h2>Connecte toi pour rejoindre l'Otaku team's</h2>
-        {% for messages in messages %}
-          <span>{{messages}}</span> 
-        {% endfor %}
-        <form action="" method="post">
-          {% csrf_token %}
-          <div class="form">
-            <div class="inputBox">
-              {{form.username}}
-              <i>Nom d'utilisateur</i>
-            </div>
-            <div class="inputBox">
-              {{form.password}} <i>Mot de passe</i>
-            </div>
-            <div class="links">
-              <a href="{% url 'reset_password' %}">Mot de passe oublié?</a> <a href="{% url 'register' %}">Je ne suis pas encore membre</a>
-            </div>
-
-            <div class="inputBox">
-              <input type="submit" value="Connexion" />
-            </div>
-          </div>
-        </form>
+{% for messages in messages %}
+<div style="width: 100%;background-color: rgb(255, 0, 0);padding: 1em;margin-top: 1em;">
+  <span style="width: 100%;">{{messages}}</span> 
+</div>
+{% endfor %}
+<div style="padding: 2em;">
+  <h2>Créer un compte</h2>
+</div>
+<div class="main_auth">
+  <div class="div_login">
+    <h2>Se Connecter</h2>
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      <div class="input_login">
+        {{form}}
       </div>
-    </div>
-  </section> <!-- partial -->
+      <div class="links">
+      </div>
+      <div class="btn_login">
+        <button type="submit">Se Connecter</button>
+      </div>
+    </form>
+    <p>
+      <a href="{% url 'reset_password' %}">Mot de passe perdu?</a><br>
+    </p>
+  </div>
+  <div class="div_register">
+    <h2>S'enregister</h2>
+    <form action="{% url 'register' %}" method="post">
+      {% csrf_token %}
+      <div class="input_register">
+        {{forms.as_p}}
+      </div>
+      <div class="btn_register">
+        <button type="submit">S'enregister</button>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

@@ -3,18 +3,9 @@
 
 {% block content %}
 {% include 'accounts/navbar.html' %}
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Home</li>
-    <li class="breadcrumb-item active" aria-current="page">categories animes</li>
-  </ol>
-</nav>
-<!-- <div>
-  <h2 style="text-align: center;padding: 1em;">Toutes nos Catégories</h2>
-</div> -->
 
 {% if user.is_authenticated %}
-<div class="btn-add" style="margin-left: 3em;"><a href="{% url 'add_categorie' %}" class="btn btn-secondary btn-sm"><i class=""></i>Ajouter une catégorie</a></div>
+<div class="btn-add" style="padding: 1em;"><a href="{% url 'add_categorie' %}" class="btn btn-primary" style="width: auto;">Ajouter une catégorie</a></div>
 {% endif %}
 {% if messages %}
   <div class="alert alert-success alert-dismissible fade show" role="alert">

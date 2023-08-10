@@ -6,7 +6,8 @@
   <title>Otaku~Team's Blog</title>
   <link rel="stylesheet" href="{% static 'css/reset.css' %}"> 
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
 
@@ -14,34 +15,35 @@
  </head> 
  <body>
 
-  {% block content %}
- 
-  <!-- Remove the container if you want to extend the Footer to full width. -->
-  
- <!-- jQuery (version récente) -->
-<!-- CSS de Bootstrap 5 -->
+{% block content %}
 
 <!-- JS de Bootstrap 5 (Inclure jQuery et Popper.js avant Bootstrap JS) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.min.js" integrity="sha384-eSLJIKPjyuuQA7l5Fk8uU3kiP7Vbss1IM3Ffd2iA3Wp0JSaSDlI+7eL7f0hOv+4M" crossorigin="anonymous"></script>
-  
-  {% endblock %}
-  <div class="footer-basic">
-    <footer>
-        <div class="social">
-          <a href="https://www.linkedin.com/in/alfred-kuate/" target="_blank"><i class="icon ion-social-linkedin"></i></a>
-          <a href="https://github.com/alfred-saker" target="_blank"><i class="icon ion-social-github"></i></a>
-        </div>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="{% url 'home' %}">Home</a></li>
-            <li class="list-inline-item"><a href="#">Services</a></li>
-            <li class="list-inline-item"><a href="#">About</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-        </ul>
-        <p class="copyright">Otaku Team's &copy;2023</p>
-    </footer>
+
+{% endblock %}
+<div class="footer-basic">
+  <footer>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/alfred-kuate/" target="_blank"><i class="icon ion-social-linkedin"></i></a>
+        <a href="https://github.com/alfred-saker" target="_blank"><i class="icon ion-social-github"></i></a>
+      </div>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="list-inline-item"><a href="#">Services</a></li>
+          <li class="list-inline-item"><a href="#">About</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+      </ul>
+      <p class="copyright">Otaku Team's &copy;2023</p>
+  </footer>
 </div>
+<script src="{% static 'js/scripts.js' %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 </body>
 </html>

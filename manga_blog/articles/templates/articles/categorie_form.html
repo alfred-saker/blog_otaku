@@ -5,12 +5,7 @@
 
 {% block content %}
 {% include 'accounts/navbar.html' %}
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Home</li>
-    <li class="breadcrumb-item active" aria-current="page">Ajouter une categorie</li>
-  </ol>
-</nav>
+
 <div class="section_main">
   <form method="post"  enctype="multipart/form-data">
     <p style="color:red;">{{form.errors}}</p>
@@ -35,7 +30,7 @@
       </div>
     </div>
     <div class="col">
-      <button type="submit" class="btn btn-secondary btn-lg btn-block">Ajouter</button>
+      <button type="submit" class="btn btn-primary" style="width: auto;">Ajouter</button>
     </div>
   </form>
 </div>

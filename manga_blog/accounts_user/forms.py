@@ -51,7 +51,7 @@ class ChangeInfoUserForm(forms.ModelForm):
             'email': 'Adresse e-mail',
     }
     widgets = {
-      'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
+      'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre Username'}),
       'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'Votre adresse mail'})
     }
 
@@ -66,5 +66,15 @@ class ChangeProfileImageForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=150)
     password = forms.CharField(widget=forms.PasswordInput)
+
+    labels = {
+            'username': 'Nom d\'utilisateur',
+            'email': 'Adresse e-mail',
+    }
+    widgets = {
+      'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
+      'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'Votre adresse mail'}),
+    }
+
 
     
