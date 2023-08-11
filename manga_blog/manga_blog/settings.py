@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
-
+import django_heroku
 from pathlib import Path
 from django.core.mail import send_mail
 
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-b(*@v#%glmji^k^3&2yeu$2y#caj!*qx^cllyu6j=p3t%d7ry#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['otaku-teams-e8ffbdd79edc.herokuapp.com','127.0.0.1']
 
 # Application definition
 
@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'manga_blog.wsgi.application'
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'otaku_db',
-    'USER': 'postgres',
-    'PASSWORD': 'root',
-    'HOST': 'localhost',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
+    'NAME': 'd5ag2f5glkig4j',
+    'USER': 'iifxswnzstfzbn',
+    'PASSWORD': 'f58882c5a2cab9026c62a62da1a76610af659d0e969ebc349c04454c622c85ef',
+    'HOST': 'ec2-99-80-190-165.eu-west-1.compute.amazonaws.com',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
     'PORT': '5432', 
   }
 }
@@ -128,6 +128,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+django_heroku.settings(locals())
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
   os.path.join(BASE_DIR, 'static')
