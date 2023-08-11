@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 import django_heroku
+import dj_database_url
 from pathlib import Path
 from django.core.mail import send_mail
 
@@ -33,7 +34,7 @@ ALLOWED_HOSTS = ['otaku-teams-e8ffbdd79edc.herokuapp.com','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    # "whitenoise.runserver_nostatic",
+    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'manga_blog.urls'
@@ -80,13 +82,17 @@ WSGI_APPLICATION = 'manga_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES['default'] = dj_database_url.config(
+#     conn_max_age=600,
+#     conn_health_checks=True,
+# )
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'd5ag2f5glkig4j',
-    'USER': 'iifxswnzstfzbn',
-    'PASSWORD': 'f58882c5a2cab9026c62a62da1a76610af659d0e969ebc349c04454c622c85ef',
-    'HOST': 'ec2-99-80-190-165.eu-west-1.compute.amazonaws.com',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
+    'NAME': 'd5pg5mfvgjdov4',
+    'USER': 'ndupborfnxjkym',
+    'PASSWORD': '7fb449d34a4417510c3cb340c457f53f0634dcf99970f875cecdabb60693c30c',
+    'HOST': 'ec2-34-250-252-161.eu-west-1.compute.amazonaws.com',   # Ou l'adresse de votre serveur PostgreSQL s'il est distant
     'PORT': '5432', 
   }
 }
