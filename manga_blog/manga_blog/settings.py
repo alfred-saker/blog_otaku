@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+
 import django_heroku
-import dj_database_url
+
+# import dj_database_url
 from pathlib import Path
 from django.core.mail import send_mail
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_heroku',
 
     'articles',
     'django_filters',

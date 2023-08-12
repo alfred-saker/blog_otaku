@@ -16,7 +16,7 @@ def home(request):
   filter = ArticleFilter(request.GET, queryset=articles)
   
   # Nombre d'articles à afficher par page
-  items_per_page = 3
+  items_per_page = 8
   # Créez un objet Paginator avec les articles et le nombre d'éléments par page
   paginator = Paginator(filter.qs, items_per_page)
   # Récupérez le numéro de page à partir des paramètres GET, par défaut à la première page (page 1)

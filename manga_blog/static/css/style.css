@@ -399,8 +399,10 @@ article .section1 .text-articles p{
 }
 
 
-
 @media screen and (max-width: 1000px) {
+  article .section1 .image{
+    width: 40%;
+  }
   .details{
     display: block;
   }
