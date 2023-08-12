@@ -218,6 +218,11 @@ article .section1 .text-articles p{
 .details .details-text p{
   text-align: justify;
 }
+.details .details-tags span{
+  cursor: pointer;
+  color: black;
+  background-color: rgb(172, 20, 20);
+}
 .details .details-tags span:hover{
   cursor: pointer;
   background-color: rgb(172, 20, 20);
