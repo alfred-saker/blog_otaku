@@ -3,13 +3,9 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from .import views
-from django.urls import handler404
-
-handler404 = 'accounts_user.views.page_404'
-
 
 urlpatterns = [
-  # path('',views.accueil,name='accueil'),
+
   path('',views.home,name='home'),
 
   # Urls accounts resgister user

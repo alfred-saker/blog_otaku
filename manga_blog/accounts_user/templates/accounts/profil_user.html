@@ -36,7 +36,7 @@
         <div class="card mb-4">
           <div class="card-body text-center">
             {% if user_profile.avatar %}
-            <img src="{{user_profile.avatar.url}}" alt="avatar"
+            <img src="{% static 'images/' %}{{user_profile.avatar}}" alt="avatar"
             class="rounded-circle img-fluid" style="width:200px;">
             {% else %}
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"

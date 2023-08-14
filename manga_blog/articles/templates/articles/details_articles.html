@@ -8,7 +8,7 @@
 <main class="details">
   <div class="row-details-first">
     <div class="image-detail">
-      <img src="{{get_articles.image_article.url}}" alt="">
+      <img src="{% static 'images/' %}{{get_articles.image_article}}" alt="Image articles">
     </div>
     <div class="title-details">
       <h2>{{get_articles.title}}</h2>
@@ -112,10 +112,9 @@
         {% endfor %}
         <hr>
       </div>
-      
       {% endif %}
     </div>
-    
+
   <div class="row-details-second">
     <div class="details-categorie">
       <h3>Catégories</h3>

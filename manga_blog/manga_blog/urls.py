@@ -26,5 +26,8 @@ urlpatterns = [
     path('articles/',include('articles.urls')),
 ]
 
+handler404 = 'accounts_user.views.page_404'
+handler404 = 'articles.views.page_404'
+
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

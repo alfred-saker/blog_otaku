@@ -14,6 +14,8 @@ import os
 
 import django_heroku
 
+django_heroku.settings(locals())
+
 # import dj_database_url
 from pathlib import Path
 from django.core.mail import send_mail
@@ -29,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b(*@v#%glmji^k^3&2yeu$2y#caj!*qx^cllyu6j=p3t%d7ry#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['otaku-teams-e8ffbdd79edc.herokuapp.com','127.0.0.1']
 
@@ -139,7 +141,6 @@ USE_TZ = True
 # STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-django_heroku.settings(locals())
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [

@@ -13,7 +13,7 @@
   {% for article in page %}
     <div class="section1">
       <div class="image">
-        <a href="{% url 'details_articles' article.id %}"><img src="{{article.image_article.url}}" alt="Image Anime Manga"></a>
+        <a href="{% url 'details_articles' article.id %}"><img src="{% static 'images/' %}{{article.image_article}}" alt="Image Anime Manga"></a>
       </div>
       <div class="text-articles">
         <div class="titre-article">
