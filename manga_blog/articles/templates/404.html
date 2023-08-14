@@ -1,0 +1,16 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'accounts/navbar.html' %}
+  <div class="main_404">
+    <div class="img_404">
+      <img src="{% static 'images/tsunade.webp' %}" alt="Image tsunade">
+    </div>
+    <div class="text_404">
+      <h1>Oups !</h1>
+      <p>Nous avons plongé dans un autre univers. La page que vous recherchez semble avoir été emportée par un shinigami. Mais ne vous inquiétez pas, nos ninjas sont sur le coup pour la retrouver !</p>
+      <p>En attendant, vous pouvez retourner à la <a href="{% url 'home' %}">page d'accueil</a> pour explorer d'autres aventures.</p>
+    </div>
+  </div>
+{% endblock %}

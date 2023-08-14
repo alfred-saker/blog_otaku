@@ -403,6 +403,39 @@ article .section1 .text-articles p{
   overflow-y: scroll;
 }
 
+.main_404 {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f9f9f9;
+  margin:5em;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.text_404{
+width: 60%;
+}
+.text_404 h1 {
+  font-size: 4rem;
+  color: #ff6b6b;
+  margin: 0;
+}
+.text_404 p {
+  font-size: 1.5rem;
+  color: #555;
+  margin-top: 10px;
+}
+.img_404{
+  width: 40%;
+}
+.img_404 img {
+  width: 100%;
+}
+.text_404 a {
+  color: #ff6b6b;
+  text-decoration: underline;
+}
+
 
 @media screen and (max-width: 1000px) {
   article .section1 .image{
@@ -437,5 +470,21 @@ article .section1 .text-articles p{
   }
   .div_reset_password{
     width: 100%;
+  }
+  .main_404{
+    display: block;
+  }
+  .text_404{
+    width: 100%;
+  }
+  .text_404 p{
+    width: 100%;
+  }
+  .img_404{
+      width: 100%;
+      height: auto;
+  }
+  .img_404 img{
+      width: 100%;
   }
 }

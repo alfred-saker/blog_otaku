@@ -10,6 +10,10 @@ from django.contrib import messages
 from articles.models import Article, Categorie, Genre
 from accounts_user.models import UserProfile
 
+from django.http import Http404
+
+def page_404(request, exception):
+    return render(request, '404.html', status=404)
 
 def home(request):
   articles = Article.objects.order_by('-created_at')

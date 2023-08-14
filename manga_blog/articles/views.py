@@ -9,8 +9,11 @@ from .form import ArticleForm,CategorieForm,CommentForm
 
 from .models import *
 
+from django.http import Http404
 # Create your views here.
 
+def page_404(request, exception):
+    return render(request, '404.html', status=404)
 @login_required(login_url='login')
 def add_articles(request):
   print(request.user)
